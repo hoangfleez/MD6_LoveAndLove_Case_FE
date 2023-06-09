@@ -9,12 +9,13 @@ export default function () {
       <Container maxWidth="lg">
         <Toolbar />
         <Box
+        component="div"
           sx={{
             display: "flex",
             flexWrap: "wrap",
             gap: 2,
             margin: "10px 0",
-            padding: "auto"
+            p: 6.5
             // justifyContent: "space-between",
           }}
         >

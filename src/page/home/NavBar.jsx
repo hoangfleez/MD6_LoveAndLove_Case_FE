@@ -47,7 +47,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "30ch",
+      width: "40ch",
     },
   },
 }));
@@ -143,6 +143,7 @@ export default function NavBar() {
           >
             Love&Love
           </Typography>
+          <Box sx={{ flexGrow: 1.6 }} />
           <Search>
             <StyledInputBase
               placeholder="Search…"

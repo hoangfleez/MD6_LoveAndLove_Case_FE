@@ -12,15 +12,17 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  border: "1px solid #000",
   p: 2,
+  WebkitBoxShadow: "14px 11px 19px 5px rgba(0,0,0,0.63)",
+  MozBoxShadow: " 14px 11px 19px 5px rgba(0,0,0,0.63)",
+  boxShadow: " 14px 11px 19px 5px rgba(0,0,0,0.63)",
 };
 
-export default function BasicModal({open,setOpen}) {
+export default function BasicModal({ open, setOpen }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [signIn, setSignIn] = React.useState(false);
-  
+
   return (
     <div>
       <Modal
@@ -31,7 +33,11 @@ export default function BasicModal({open,setOpen}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-description">
-            {signIn ?  <Register setSignIn={setSignIn}/>: <Login setSignIn={setSignIn}/>}
+            {signIn ? (
+              <Register setSignIn={setSignIn} />
+            ) : (
+              <Login setSignIn={setSignIn} />
+            )}
           </Typography>
         </Box>
       </Modal>
