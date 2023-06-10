@@ -44,3 +44,6 @@ export default function BasicModal({ open, setOpen }) {
     </div>
   );
 }
+
+
+

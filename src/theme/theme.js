@@ -11,11 +11,11 @@ const theme = extendTheme({
         // }
       },
       dark: {
-        palette: {
-          // primary: {
-          //   main: '#000'
-          // }
-        }
+        // palette: {
+        //   primary: {
+        //     main: '#000'
+        //   }
+        // }
       },
     }
   })

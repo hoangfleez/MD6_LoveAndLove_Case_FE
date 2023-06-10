@@ -14,11 +14,11 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ModeToggle from "../../theme/DarkMode";
+import ModeToggle from "../../../theme/DarkMode";
 import { useSelector, useDispatch } from "react-redux";
-import UserIcons from "../user/UserIcons";
+import UserIcons from "../../user/UserIcons";
 import PersonIcon from "@mui/icons-material/Person";
-import BasicModal from "../../page/user/Modal";
+import BasicModal from "../../user/Modal";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,7 +57,6 @@ export default function NavBar() {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-
 
   const user = useSelector(({ user }) => {
     return user.currentUser;
@@ -131,9 +130,12 @@ export default function NavBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar>
-        <Toolbar >
+    <Box>
+      <AppBar
+        position="fixed"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Toolbar>
           <FavoriteIcon sx={{ mr: 2, color: "red" }} />
           <Typography
             variant="h6"
@@ -166,7 +168,7 @@ export default function NavBar() {
             ) : (
               <UserIcons />
             )}
-            <BasicModal  open={open} setOpen={setOpen}/>
+            <BasicModal open={open} setOpen={setOpen} />
           </Box>
           <ModeToggle />
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

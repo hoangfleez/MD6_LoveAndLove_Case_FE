@@ -1,17 +1,14 @@
-import { Box } from "@mui/material";
 import React from "react";
-import SiderBar from "./SiderBar";
 import { Outlet } from "react-router-dom";
-
-const Home = () => {
+import Navbar from "./navbar/NavBar";
+import { Box } from "@mui/material";
+const Index = () => {
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <SiderBar />
-        <Outlet />
-      </Box>
-    </>
+    <Box sx={{height:"100vh", width:"100%"}}>
+      <Navbar />
+      <Outlet />
+    </Box>
   );
 };
 
-export default Home;
+export default Index;
