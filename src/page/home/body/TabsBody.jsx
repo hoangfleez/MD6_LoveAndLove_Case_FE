@@ -27,7 +27,6 @@ function TabPanel(props) {
                 flexWrap: "wrap",
                 gap: "10px",
                 padding: "0 95px",
-                marginTop:"48px"
               }}
             >
               {children}
@@ -53,9 +52,9 @@ export default function TabsBody() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          sx={{position:"fixed"}}
+          sx={{ position: "fixed", zIndex: 1 }}
         >
-          <Tab label="Tat ca" />
+          <Tab label="Tất cả" />
           <Tab label="Ra mắt người nhà" />
           <Tab label="Ra mắt bạn bè" />
           <Tab label="Du lịch chung cùng nhóm bạn" />
@@ -67,50 +66,22 @@ export default function TabsBody() {
           <Tab label="Đi chơi ngày lễ" />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0} >
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={8}>
-        <ActionAreaCard />
-      </TabPanel>
-      <TabPanel value={value} index={9}>
-        <ActionAreaCard />
-      </TabPanel>
+      <Box sx={{ marginTop: "48px" }}>
+        <TabPanel value={value} index={0}>
+          <ActionAreaCard />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <ActionAreaCard />
+        </TabPanel>
+        <TabPanel value={value} index={2}></TabPanel>
+        <TabPanel value={value} index={3}></TabPanel>
+        <TabPanel value={value} index={4}></TabPanel>
+        <TabPanel value={value} index={5}></TabPanel>
+        <TabPanel value={value} index={6}></TabPanel>
+        <TabPanel value={value} index={7}></TabPanel>
+        <TabPanel value={value} index={8}></TabPanel>
+        <TabPanel value={value} index={9}></TabPanel>
+      </Box>
     </Box>
   );
 }
