@@ -43,7 +43,7 @@ const CustomTab = ({ label, ...props }) => {
         borderRadius: "8px",
         backgroundColor: "customBtnColor.backgroundColor",
         color: "customBtnColor.color",
-        margin: "5px",
+        margin: "10px",
         padding: "0 15px",
         minHeight: "35px",
         textTransform: 'none',
@@ -77,7 +77,6 @@ export default function BodyLists() {
             zIndex: 1,
             backgroundColor: "customColorSchemes.basicColor",
             "& .MuiTabs-indicator": { display: "none" },
-            marginLeft: "10px"
           }}
         >
           <CustomTab label="Tất cả" />
@@ -103,13 +102,27 @@ export default function BodyLists() {
         <TabPanel value={value} index={2}>
           Ra mat ban be
         </TabPanel>
-        <TabPanel value={value} index={3}></TabPanel>
-        <TabPanel value={value} index={4}></TabPanel>
-        <TabPanel value={value} index={5}></TabPanel>
-        <TabPanel value={value} index={6}></TabPanel>
-        <TabPanel value={value} index={7}></TabPanel>
-        <TabPanel value={value} index={8}></TabPanel>
-        <TabPanel value={value} index={9}></TabPanel>
+        <TabPanel value={value} index={3}>
+          Du lich vs nhom ban
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          Di choi chung
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          Tham du sinh nhat
+        </TabPanel>
+        <TabPanel value={value} index={6}>
+          Nc online
+        </TabPanel>
+        <TabPanel value={value} index={7}>
+          Nc offline
+        </TabPanel>
+        <TabPanel value={value} index={8}>
+          Đi chơi tết
+        </TabPanel>
+        <TabPanel value={value} index={9}>
+          Đi chơi ngày lễ
+        </TabPanel>
       </Box>
     </Box>
   );
