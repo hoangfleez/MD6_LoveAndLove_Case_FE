@@ -80,7 +80,6 @@ export default function BodyLists() {
           }}
         >
           <CustomTab label="Tất cả" />
-
           <CustomTab label="Ra mắt người nhà" />
           <CustomTab label="Ra mắt bạn bè" />
           <CustomTab label="Du lịch chung cùng nhóm bạn" />
