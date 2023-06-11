@@ -1,11 +1,9 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Container } from "@mui/material";
-import ActionAreaCard from "../../../components/Card";
+import { Button, Container, Typography } from "@mui/material";
+import ShowAll from "./ShowAll";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,7 +36,29 @@ function TabPanel(props) {
   );
 }
 
-export default function TabsBody() {
+const CustomTab = ({ label, ...props }) => {
+  return (
+    <Tab
+      sx={{
+        borderRadius: "8px",
+        backgroundColor: "customBtnColor.backgroundColor",
+        color: "customBtnColor.color",
+        margin: "5px",
+        padding: "0 15px",
+        minHeight: "35px",
+        textTransform: 'none',
+        "&.Mui-selected": {
+          backgroundColor: "customSelected.backgroundColor",
+          color: "customSelected.color",
+        },
+      }}
+      label={label}
+      {...props}
+    />
+  );
+};
+
+export default function BodyLists() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -52,28 +72,37 @@ export default function TabsBody() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          sx={{ position: "fixed", zIndex: 1 }}
+          sx={{
+            position: "fixed",
+            zIndex: 1,
+            backgroundColor: "customColorSchemes.basicColor",
+            "& .MuiTabs-indicator": { display: "none" },
+            marginLeft: "10px"
+          }}
         >
-          <Tab label="Tất cả" />
-          <Tab label="Ra mắt người nhà" />
-          <Tab label="Ra mắt bạn bè" />
-          <Tab label="Du lịch chung cùng nhóm bạn" />
-          <Tab label="Đi chơi chung" />
-          <Tab label="Tham dự sinh nhật" />
-          <Tab label="Trò chuyện offline" />
-          <Tab label="Trò chuyện online" />
-          <Tab label="Đi chơi tết" />
-          <Tab label="Đi chơi ngày lễ" />
+          <CustomTab label="Tất cả" />
+
+          <CustomTab label="Ra mắt người nhà" />
+          <CustomTab label="Ra mắt bạn bè" />
+          <CustomTab label="Du lịch chung cùng nhóm bạn" />
+          <CustomTab label="Đi chơi chung" />
+          <CustomTab label="Tham dự sinh nhật" />
+          <CustomTab label="Trò chuyện offline" />
+          <CustomTab label="Trò chuyện online" />
+          <CustomTab label="Đi chơi tết" />
+          <CustomTab label="Đi chơi ngày lễ" />
         </Tabs>
       </Box>
       <Box sx={{ marginTop: "48px" }}>
         <TabPanel value={value} index={0}>
-          <ActionAreaCard />
+          <ShowAll />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ActionAreaCard />
+          Ra mat nguoi nha
         </TabPanel>
-        <TabPanel value={value} index={2}></TabPanel>
+        <TabPanel value={value} index={2}>
+          Ra mat ban be
+        </TabPanel>
         <TabPanel value={value} index={3}></TabPanel>
         <TabPanel value={value} index={4}></TabPanel>
         <TabPanel value={value} index={5}></TabPanel>

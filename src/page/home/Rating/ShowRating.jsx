@@ -16,8 +16,8 @@ const labels = {
   5: 'Excellent+',
 };
 
-export default function TextRating() {
-  const value = 3.5;
+export default function ShowRating() {
+  const value = 1;
 
   return (
     <Box

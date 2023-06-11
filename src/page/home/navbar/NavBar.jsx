@@ -133,7 +133,7 @@ export default function NavBar() {
     <Box>
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 , backgroundColor:"customColorSchemes.backgroundColor"}}
       >
         <Toolbar>
           <FavoriteIcon sx={{ mr: 2, color: "red" }} />
@@ -145,8 +145,8 @@ export default function NavBar() {
           >
             Love&Love
           </Typography>
-          <Box sx={{ flexGrow: 1.6 }} />
-          <Search>
+          <Box sx={{ flexGrow: 1.3 }} />
+          <Search sx={{ color:"customColorSchemes.textColor"}}>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
@@ -162,7 +162,7 @@ export default function NavBar() {
             }}
           >
             {!user ? (
-              <IconButton color="inherit" onClick={handleOpen}>
+              <IconButton  onClick={handleOpen}>
                 <PersonIcon />
               </IconButton>
             ) : (
