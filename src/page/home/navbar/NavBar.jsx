@@ -53,6 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -84,6 +85,8 @@ export default function NavBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (

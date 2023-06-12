@@ -1,8 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { login } from "../../sevives/useService";
+
+import {createSlice} from "@reduxjs/toolkit";
+import {editUser, login, logout, showUser} from "../../sevives/useService";
+
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("user")),
+  profile: {}
+
+
 };
 
 const userSlice = createSlice({
@@ -18,6 +23,19 @@ const userSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(action.payload));
       }
     });
+
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.currentUser = action.payload;
+    });
+
+    builder.addCase(showUser.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    });
+
+    builder.addCase(editUser.fulfilled, (state, action) => {
+      state.currentUser = action.payload;
+    });
+
   },
 });
 export default userSlice.reducer;
