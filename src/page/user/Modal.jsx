@@ -34,9 +34,9 @@ export default function BasicModal({ open, setOpen }) {
         <Box sx={style}>
           <Typography id="modal-modal-description">
             {signIn ? (
-              <Register setSignIn={setSignIn} />
+              <Register setSignIn={setSignIn}  />
             ) : (
-              <Login setSignIn={setSignIn} />
+              <Login setSignIn={setSignIn} setOpen={setOpen} />
             )}
           </Typography>
         </Box>

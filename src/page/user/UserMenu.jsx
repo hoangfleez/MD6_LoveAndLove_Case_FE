@@ -2,19 +2,25 @@ import { Logout, Settings } from '@mui/icons-material';
 import { ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import { updateUser } from '../../redux/authSlice';
+import { logout } from '../../sevives/useService';
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   const dispatch = useDispatch();
+  // const user = useSelector(({ user }) => {
+  //   return user.currentUser;
+  // });
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
   };
 
   const handleLogout = () => {
-    dispatch(updateUser(null));
+    localStorage.clear();
+    dispatch(logout());
     handleCloseUserMenu();
   };
+
+
 
   return (
     <Menu
