@@ -2,10 +2,12 @@ import { Logout, Settings } from '@mui/icons-material';
 import { ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import {useNavigate} from "react-router-dom";
 // import { updateUser } from '../../redux/authSlice';
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
@@ -16,6 +18,10 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
     handleCloseUserMenu();
   };
 
+  const  handleProfile = () => {
+    navigate('profile')
+  }
+
   return (
     <Menu
       anchorEl={anchorUserMenu}
@@ -23,8 +29,8 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
       onClose={handleCloseUserMenu}
       onClick={handleCloseUserMenu}
     >
-      <MenuItem>
-        <ListItemIcon>
+      <MenuItem onClick={handleProfile}>
+        <ListItemIcon  >
           <Settings fontSize="small" />
         </ListItemIcon>
         Profile

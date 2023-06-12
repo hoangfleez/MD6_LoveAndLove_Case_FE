@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 import UserMenu from './UserMenu';
 
 const UserIcons = () => {
+    const user = useSelector(({ user }) => {
+        return user.currentUser;
+    });
 
 
   const [anchorUserMenu, setAnchorUserMenu] = useState(null);
@@ -23,8 +26,8 @@ const UserIcons = () => {
       </IconButton>
       <Tooltip title="Open User Settings">
         <IconButton onClick={(e) => setAnchorUserMenu(e.currentTarget)}>
-          <Avatar src={currentUser?.photoURL} alt={currentUser?.name}>
-            {/* {currentUser?.name?.charAt(0).toUpperCase()} */}
+          <Avatar src={user?.avata} alt={user?.name}>
+             {user?.name?.charAt(0).toUpperCase()}
           </Avatar>
         </IconButton>
       </Tooltip>

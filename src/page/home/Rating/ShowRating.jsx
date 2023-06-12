@@ -17,7 +17,6 @@ const labels = {
 };
 
 export default function ShowRating(props) {
-  console.log(props,222222)
   const value = props.rate;
 
   return (
