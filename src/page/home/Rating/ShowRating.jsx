@@ -16,8 +16,9 @@ const labels = {
   5: 'Excellent+',
 };
 
-export default function ShowRating() {
-  const value = 5;
+export default function ShowRating(props) {
+  console.log(props,222222)
+  const value = props.rate;
 
   return (
     <Box
