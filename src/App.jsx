@@ -1,11 +1,17 @@
-import ModeToggle from "./components/DarkMode";
+import { Route, Routes } from "react-router-dom";
 
+import Home from "./page/home/Home";
+import Body from "./page/home/body/Body";
 
 
 function App() {
   return (
     <>
-      <ModeToggle/>
+      <Routes>
+        <Route path="" element={<Home />}>
+          <Route path="" element={ <Body/> }/>
+        </Route>
+      </Routes>
     </>
   );
 }
