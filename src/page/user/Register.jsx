@@ -11,7 +11,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ErrorIcon from "@mui/icons-material/Error";
 import TextFields from "../../components/TextFields";
 import { userName, pawdRegExp } from "../../utils";
 import { register } from "../../sevives/useService";
@@ -43,6 +42,17 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
+});
+
+const schema = yup.object({
+  username: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(userName, "Sai định dạng tài khooản"),
+  password: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(pawdRegExp, "Mật khẩu phải có ít nhất từ 6 tới 12 ký tự"),
 });
 
 export default function Register(props) {
@@ -101,6 +111,7 @@ export default function Register(props) {
           onSubmit={handleSubmit(onSubmit)}
           sx={{ mt: 3 }}
         >
+
           <TextFields
             errors={errors}
             control={control}
@@ -143,6 +154,7 @@ export default function Register(props) {
               >
                 Bạn đã có tài khoản? Đăng nhập ngay.
               </Link>
+
             </Grid>
           </Grid>
         </Box>

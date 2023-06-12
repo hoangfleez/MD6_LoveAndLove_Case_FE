@@ -1,3 +1,4 @@
+
 import {createSlice} from "@reduxjs/toolkit";
 import {editUser, login, logout, showUser} from "../../sevives/useService";
 
@@ -5,6 +6,8 @@ import {editUser, login, logout, showUser} from "../../sevives/useService";
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("user")),
   profile: {}
+
+
 };
 
 const userSlice = createSlice({
@@ -20,6 +23,7 @@ const userSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(action.payload));
       }
     });
+
     builder.addCase(logout.fulfilled, (state, action) => {
       state.currentUser = action.payload;
     });
