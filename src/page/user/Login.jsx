@@ -9,7 +9,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useForm } from "react-hook-form";
+import TextFields from "../../components/TextFields";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { pawdRegExp, userName } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../sevives/useService";
+import ErrorIcon from '@mui/icons-material/Error'
+
 
 function Copyright(props) {
   return (
@@ -33,13 +42,47 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+const schema = yup.object({
+  username: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(userName, "Phải có ít nhất 2 ký tự"),
+  password: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(pawdRegExp, "Mật khẩu phải có ít nhất từ 6 tới 12 ký tự"),
+});
+
 export default function Login(props) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const dispatch = useDispatch();
+
+  const [message, setMessage] = React.useState("");
+
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+    control,
+  } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (user) => {
+    dispatch(login(user)).then((data) => {
+      console.log(data, 666666);
+      if (data.payload === "User is not exist") {
+        setMessage("Tài khoản không tồn tại! Hãy đăng ký.");
+      } else if (data.payload === "Password is wrong") {
+        setMessage("Sai mật khẩu hãy kiểm tra lại");
+      } else {
+        alert("Đăng nhập thành công");
+        props.setOpen(false);
+        reset();
+      }
     });
   };
 
@@ -62,31 +105,40 @@ export default function Login(props) {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
-            noValidate
             sx={{ mt: 1 }}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Tài khooản"
+            <TextFields
+              errors={errors}
+              control={control}
               name="username"
-              autoComplete="username"
-              autoFocus
+              label="Tên đăng nhập"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
+            <TextFields
+              errors={errors}
+              control={control}
               name="password"
               label="Mật khẩu"
               type="password"
-              id="password"
-              autoComplete="current-password"
             />
-
+            {message ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  mt: "6px",
+                }}
+              >
+                <ErrorIcon color="error" sx={{ width: "20px" }} />
+                <Typography color="error.main" variant="span" fontSize="14px">
+                  {message}
+                </Typography>
+              </Box>
+            ) : (
+              ""
+            )}
             <Button
               type="submit"
               fullWidth
