@@ -34,9 +34,4 @@ export const logout = createAsyncThunk("users/logout", async () => {
   return undefined;
 });
 
-export const updateCheckbox = (checkboxValue) => {
-  return {
-    type: "users/updateCheckbox",
-    payload: checkboxValue,
-  };
-};
+

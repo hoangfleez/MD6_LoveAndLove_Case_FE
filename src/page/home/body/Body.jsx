@@ -5,6 +5,7 @@ import BodyLists from "./lists/BodyLists";
 
 export default function Body() {
   const [service,setService] = useState([]);
+  console.log(service)
   return (
     <Box
       sx={{

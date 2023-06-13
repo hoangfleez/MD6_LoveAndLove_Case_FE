@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editUser, login, logout, showUser, updateCheckbox } from "../../sevives/useService";
+import { editUser, login, logout, showUser } from "../../sevives/useService";
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("user")),
   profile: {},
-  checkboxValue: false,
+
 };
 
 const userSlice = createSlice({
@@ -33,9 +33,6 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
     });
 
-    builder.addCase(updateCheckbox, (state, action) => {
-      state.checkboxValue = action.payload;
-    });
   },
 });
 export default userSlice.reducer;
