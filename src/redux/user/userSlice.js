@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { editUser, login, logout, showUser } from "../../sevives/useService";
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("user")),
   profile: {},
+
 
 };
 
@@ -12,11 +14,12 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload, 2222);
+
       if (typeof action.payload === "string") {
         state.currentUser = undefined;
       } else {
         state.currentUser = action.payload;
+
         localStorage.setItem("user", JSON.stringify(action.payload.payload));
       }
     });

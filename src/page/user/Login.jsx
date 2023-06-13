@@ -37,9 +37,19 @@ const schema = yup.object({
   password: yup.string().required("Không được để trống!"),
 });
 
+const schema = yup.object({
+  username: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(userName, "Phải có ít nhất 2 ký tự"),
+  password: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(pawdRegExp, "Mật khẩu phải có ít nhất từ 6 tới 12 ký tự"),
+});
+
 export default function Login(props) {
   const dispatch = useDispatch();
-
   const {
     handleSubmit,
     reset,
@@ -52,6 +62,7 @@ export default function Login(props) {
     },
     resolver: yupResolver(schema),
   });
+
   const [message, setMessage] = React.useState("");
 
 
@@ -137,6 +148,7 @@ export default function Login(props) {
               >
                 {"Bạn không có tài khoản?Tạo ngay"}
               </Link>
+          
             </Grid>
           </Grid>
         </Box>

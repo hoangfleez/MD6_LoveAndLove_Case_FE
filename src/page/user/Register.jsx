@@ -15,6 +15,7 @@ import TextFields from "../../components/TextFields";
 import { register } from "../../sevives/useService";
 import { email } from "../../utils";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -45,6 +46,17 @@ const schema = yup.object({
   email: yup.string().required("Không được để trống!").matches(email, "Sai định dạng email"),
 });
 
+const schema = yup.object({
+  username: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(userName, "Sai định dạng tài khooản"),
+  password: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(pawdRegExp, "Mật khẩu phải có ít nhất từ 6 tới 12 ký tự"),
+});
+
 export default function Register(props) {
   const dispatch = useDispatch();
 
@@ -57,7 +69,9 @@ export default function Register(props) {
     defaultValues: {
       username: "",
       password: "",
+
       email: "",
+
     },
     resolver: yupResolver(schema),
   });
@@ -150,6 +164,7 @@ export default function Register(props) {
               >
                 Bạn đã có tài khoản? Đăng nhập ngay.
               </Link>
+          
             </Grid>
           </Grid>
         </Box>
