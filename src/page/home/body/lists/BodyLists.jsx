@@ -58,7 +58,8 @@ const CustomTab = ({ label, ...props }) => {
   );
 };
 
-export default function BodyLists() {
+export default function BodyLists({service,setService}) {
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -93,7 +94,7 @@ export default function BodyLists() {
       </Box>
       <Box sx={{ marginTop: "48px" }}>
         <TabPanel value={value} index={0}>
-          <ShowAll />
+          <ShowAll service={service} setService={setService} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Ra mat nguoi nha
