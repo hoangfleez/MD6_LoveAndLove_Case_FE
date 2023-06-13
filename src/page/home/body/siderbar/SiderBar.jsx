@@ -3,7 +3,7 @@ import React from "react";
 import Free from "../../checkbox/FreeService";
 import Extended from "../../checkbox/ ExtendedService";
 
-export default function SiderBar() {
+export default function SiderBar({setService}) {
   return (
     <>
       <Drawer
@@ -15,9 +15,9 @@ export default function SiderBar() {
         }}
       >
         <Toolbar />
-        <Free />
+        <Free setService={setService}/>
         <Divider />
-        <Extended />
+        <Extended setService={setService}/>
       </Drawer>
     </>
   );

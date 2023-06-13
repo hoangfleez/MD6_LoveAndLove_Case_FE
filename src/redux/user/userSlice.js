@@ -1,10 +1,10 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {editUser, login, logout, showUser} from "../../sevives/useService";
-
+import { createSlice } from "@reduxjs/toolkit";
+import { editUser, login, logout, showUser, updateCheckbox } from "../../sevives/useService";
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("user")),
-  profile: {}
+  profile: {},
+  checkboxValue: false,
 };
 
 const userSlice = createSlice({
@@ -12,14 +12,15 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload,2222)
+      console.log(action.payload, 2222);
       if (typeof action.payload === "string") {
         state.currentUser = undefined;
       } else {
         state.currentUser = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload));
+        localStorage.setItem("user", JSON.stringify(action.payload.payload));
       }
     });
+
     builder.addCase(logout.fulfilled, (state, action) => {
       state.currentUser = action.payload;
     });
@@ -32,6 +33,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
     });
 
+    builder.addCase(updateCheckbox, (state, action) => {
+      state.checkboxValue = action.payload;
+    });
   },
 });
 export default userSlice.reducer;

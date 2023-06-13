@@ -11,10 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ErrorIcon from "@mui/icons-material/Error";
 import TextFields from "../../components/TextFields";
-import { userName, pawdRegExp } from "../../utils";
 import { register } from "../../sevives/useService";
+import { email } from "../../utils";
 
 function Copyright(props) {
   return (
@@ -43,6 +42,7 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
+  email: yup.string().required("Không được để trống!").matches(email, "Sai định dạng email"),
 });
 
 export default function Register(props) {
@@ -57,6 +57,7 @@ export default function Register(props) {
     defaultValues: {
       username: "",
       password: "",
+      email: "",
     },
     resolver: yupResolver(schema),
   });
@@ -70,7 +71,6 @@ export default function Register(props) {
   const onSubmit = (user) => {
     console.log(user);
     dispatch(register(user)).then((data) => {
-      console.log(data, 2323232);
       if (data.payload === "tai khoan da ton tai") {
         setMessage("Tài khooản đã tồn tại!! Hãy chọn tài khooản khác.");
       } else {
@@ -122,6 +122,13 @@ export default function Register(props) {
             name="password"
             label="Mật khẩu"
             type="password"
+          />
+          <TextFields
+            errors={errors}
+            control={control}
+            name="email"
+            label="Địa chỉ email"
+            type="email"
           />
 
           <Button

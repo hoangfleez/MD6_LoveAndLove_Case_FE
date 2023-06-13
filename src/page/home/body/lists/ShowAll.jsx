@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, CardActionArea, Chip, Stack } from "@mui/material";
 import ShowRating from "../../Rating/ShowRating";
+import { useDispatch, useSelector } from "react-redux";
 
 const arr = [
   {
@@ -103,7 +104,11 @@ const arr = [
     rate:"3",
   },
 ];
-export default function ShowAll() {
+export default function ShowAll({service,setService}) {
+  console.log(service)
+  const checkboxValue = useSelector((state) => state.checkboxValue);
+  const dispatch = useDispatch();
+  
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", width: "100%", gap: 1 }}>
       {arr &&

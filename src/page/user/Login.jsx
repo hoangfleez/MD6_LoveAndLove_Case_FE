@@ -63,8 +63,8 @@ export default function Login(props) {
         setMessage("Mật khẩu sai hãy kiểm tra lại.");
       } else {
         alert("Đăng nhập thành công");
-        // props.setOpen(false);
-        // reset();
+        props.setOpen(false);
+        reset();
       }
     });
   };
