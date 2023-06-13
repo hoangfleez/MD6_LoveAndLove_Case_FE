@@ -2,7 +2,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -10,6 +9,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import ErrorIcon from '@mui/icons-material/Error'
+import TextFields from "../../components/TextFields";
+import { userName, pawdRegExp } from "../../utils";
+import { register } from "../../services/useService";
 
 function Copyright(props) {
   return (
@@ -33,13 +40,49 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+const schema = yup.object({
+  username: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(userName, "Sai định dạng tài khooản"),
+  password: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(pawdRegExp, "Mật khẩu phải có ít nhất từ 6 tới 12 ký tự"),
+});
+
 export default function Register(props) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const dispatch = useDispatch();
+
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+    control,
+  } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+    resolver: yupResolver(schema),
+  });
+
+  const handleChangeLogin = () => {
+    props.setSignIn(false);
+  };
+
+  const [message, setMessage] = React.useState("");
+
+  const onSubmit = (user) => {
+    console.log(user);
+    dispatch(register(user)).then((data) => {
+      console.log(data, 2323232);
+      if (data.payload === "tai khoan da ton tai") {
+        setMessage("Tài khooản đã tồn tại!! Hãy chọn tài khooản khác.");
+      } else {
+        // handleChangeLogin();
+        // reset()
+      }
     });
   };
 
@@ -63,53 +106,41 @@ export default function Register(props) {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="Họ"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Tên"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="Tên đăng nhập"
-                  name="username"
-                  autoComplete="username"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Mật khẩu"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-            </Grid>
+            <TextFields
+              errors={errors}
+              control={control}
+              name="username"
+              label="Tên đăng nhập"
+            />
+
+            <TextFields
+              errors={errors}
+              control={control}
+              name="password"
+              label="Mật khẩu"
+              type="password"
+            />
+
+            {message ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  mt: "6px",
+                }}
+              >
+                <ErrorIcon color="error" sx={{ width: "20px" }} />
+                <Typography color="error.main" variant="span" fontSize="14px">
+                  {message}
+                </Typography>
+              </Box>
+            ) : (
+              ""
+            )}
             <Button
               fullWidth
               type="submit"

@@ -2,25 +2,31 @@ import { Logout, Settings } from '@mui/icons-material';
 import { ListItemIcon, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { logout } from '../../services/useService';
 import {useNavigate} from "react-router-dom";
-// import { updateUser } from '../../redux/authSlice';
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const user = useSelector(({ user }) => {
+  //   return user.currentUser;
+  // });
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
   };
 
   const handleLogout = () => {
-    dispatch(updateUser(null));
+    localStorage.clear();
+    dispatch(logout());
     handleCloseUserMenu();
+    window.location.reload(); // Reloads the current page
   };
 
-  const  handleProfile = () => {
-    navigate('profile')
+  const handleProfile = () => {
+    navigate("profile")
   }
+
 
   return (
     <Menu
@@ -30,7 +36,7 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
       onClick={handleCloseUserMenu}
     >
       <MenuItem onClick={handleProfile}>
-        <ListItemIcon  >
+        <ListItemIcon>
           <Settings fontSize="small" />
         </ListItemIcon>
         Profile
