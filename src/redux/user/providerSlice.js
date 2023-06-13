@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProvider } from "../../sevives/getProvider";
+import { filterProvider, getProvider } from "../../sevives/getProvider";
 
 const initialState = {
-  checkboxValue: false,
-  checkbox: [],
+listProvider:[],
+currenProvider:[],
 }
 
 
@@ -12,7 +12,13 @@ const providerSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getProvider.fulfilled, (state, action) => {
-      state.currentUser = action.payload;
+      state.listProvider = action.payload;
+      state.currenProvider = action.payload;
+    });
+
+    builder.addCase(filterProvider.fulfilled, (state, action) => {
+      
+      // state.currentUser = action.payload;
     });
   }
 })

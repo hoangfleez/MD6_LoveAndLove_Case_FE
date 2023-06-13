@@ -6,13 +6,20 @@ import Typography from "@mui/material/Typography";
 import { Box, CardActionArea, Chip, Stack } from "@mui/material";
 import ShowRating from "../../Rating/ShowRating";
 import { useDispatch, useSelector } from "react-redux";
-import { getProvider } from "../../../../sevives/getProvider";
+import { filterProvider, getProvider } from "../../../../sevives/getProvider";
+
 
 export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();
 
+
+  React.useEffect(() => {
+    dispatch(filterProvider(service))
+  },[service])
+
+
   const showProvider = useSelector((state) => {
-    return state.provider.currentUser
+    return state.provider.currenProvider
   });
 
   React.useEffect(() => {

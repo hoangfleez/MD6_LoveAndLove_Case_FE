@@ -103,4 +103,6 @@ export const getProvider = createAsyncThunk("provider/getProvider", async () => 
 });
 
 
-export default filter = createAsyncThunk("provider/filter", async ()=>{})
+export const filterProvider = createAsyncThunk("provider/filterProvider", async (arrbox)=>{
+  return arrbox;
+})
