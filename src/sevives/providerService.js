@@ -7,7 +7,7 @@ export const getProvider = createAsyncThunk("provider/getProvider", async () => 
       name: "tets1",
       avata: "https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg",
       service: "Ra mắt người yêu",
-      other: ["nắm tay", "nói yêu", "ôm", "nhõng nhẽo"],
+      other: ["namtay", "nói yêu", "ôm", "nhõng nhẽo"],
       rate:"1.5",
     },
     {

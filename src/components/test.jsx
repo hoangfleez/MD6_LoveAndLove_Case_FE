@@ -1,38 +1,31 @@
-import React from 'react';
-import { Tab, Tabs, Typography } from '@mui/material';
+import React, { useState } from 'react';
 
-const CustomTab = ({ label, ...props }) => {
-  return (
-    <Tab
-      sx={{
-        borderRadius: '8px',
-        backgroundColor: 'gray',
-        color: '#fff',
-        '&.Mui-selected': {
-          backgroundColor: '#fff',
-          color: '#000',
-        },
-      }}
-      label={label}
-      {...props}
-    />
-  );
-};
+function App() {
+  const [showInput, setShowInput] = useState(false);
 
-const CustomTabs = () => {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleClick = () => {
+    setShowInput(true);
   };
 
   return (
-    <Tabs value={value} onChange={handleChange} aria-label="Custom Tabs">
-      <CustomTab label="Tab 1" />
-      <CustomTab label="Tab 2" />
-      <CustomTab label="Tab 3" />
-    </Tabs>
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            {showInput ? (
+              <td>
+                <input type="text" />
+              </td>
+            ) : (
+              <td>
+                <button onClick={handleClick}>Button</button>
+              </td>
+            )}
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
-};
+}
 
-export default CustomTabs;
+export default App;

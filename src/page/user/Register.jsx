@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import TextFields from "../../components/TextFields";
 import { register } from "../../sevives/useService";
 import { email } from "../../utils";
+import { Padding } from "@mui/icons-material";
+import Email from "../../components/Email";
 
 function Copyright(props) {
   return (
@@ -42,11 +44,20 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-  email: yup.string().required("Không được để trống!").matches(email, "Sai định dạng email"),
+  email: yup
+    .string()
+    .required("Không được để trống!")
+    .matches(email, "Sai định dạng email"),
 });
 
 export default function Register(props) {
   const dispatch = useDispatch();
+
+  const [showInput, setShowInput] = React.useState(false);
+
+  const handleButtonClick = () => {
+    setShowInput(true);
+  };
 
   const {
     handleSubmit,
@@ -122,13 +133,6 @@ export default function Register(props) {
             name="password"
             label="Mật khẩu"
             type="password"
-          />
-          <TextFields
-            errors={errors}
-            control={control}
-            name="email"
-            label="Địa chỉ email"
-            type="email"
           />
 
           <Button

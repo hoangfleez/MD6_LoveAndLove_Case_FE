@@ -23,7 +23,7 @@ export default function Extended({ setService }) {
         sx={{ display: "flex", flexDirection: "column", paddingLeft: "20px" }}
       >
         <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxChange} name="honTay" />}
+          control={<Checkbox onChange={handleCheckboxChange} name="hontay" />}
           label="Hôn tay"
         />
         <FormControlLabel
@@ -32,19 +32,19 @@ export default function Extended({ setService }) {
         />
         <FormControlLabel
           control={
-            <Checkbox onChange={handleCheckboxChange} name="nhongNheo" />
+            <Checkbox onChange={handleCheckboxChange} name="nhongnheo" />
           }
           label="Nhõng nhẽo"
         />
         <FormControlLabel
           control={
-            <Checkbox onChange={handleCheckboxChange} name="cuChiThanMat" />
+            <Checkbox onChange={handleCheckboxChange} name="cuchithanmat" />
           }
           label="Cử chỉ thân mật"
         />
         <FormControlLabel
           control={
-            <Checkbox onChange={handleCheckboxChange} name="noiLoiYeu" />
+            <Checkbox onChange={handleCheckboxChange} name="noiloiyeu" />
           }
           label="Nói lời yêu"
         />

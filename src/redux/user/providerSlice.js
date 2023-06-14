@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { filterProvider, getProvider } from "../../sevives/getProvider";
+import { filterProvider, getProvider } from "../../sevives/providerService";
 
 const initialState = {
-listProvider:[],
-currenProvider:[],
-}
-
+  listProvider: [],
+  currenProvider: [],
+};
 
 const providerSlice = createSlice({
   name: "provider",
@@ -16,11 +15,16 @@ const providerSlice = createSlice({
       state.currenProvider = action.payload;
     });
 
-    builder.addCase(filterProvider.fulfilled, (state, action) => {
-      
-      // state.currentUser = action.payload;
+    builder.addCase(filterProvider.fulfilled, (state, { payload }) => {
+      let arr = payload.listProvider.filter((element) => {
+        return payload.service.some((item) => {
+          return element.other.includes(item);
+        });
+      });
+      // console.log(arr,6666);
+      // return arr;
     });
-  }
-})
+  },
+});
 
 export default providerSlice.reducer;

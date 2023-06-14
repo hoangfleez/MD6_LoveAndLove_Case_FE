@@ -6,30 +6,32 @@ import Typography from "@mui/material/Typography";
 import { Box, CardActionArea, Chip, Stack } from "@mui/material";
 import ShowRating from "../../Rating/ShowRating";
 import { useDispatch, useSelector } from "react-redux";
-import { filterProvider, getProvider } from "../../../../sevives/getProvider";
-
+import {
+  filterProvider,
+  getProvider,
+} from "../../../../sevives/providerService";
 
 export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();
 
+  const showProvider = useSelector((state) => {
+    return state.provider.currenProvider;
+  });
+
+
+  const filteredArr = showProvider.filter((item) => item.service === "Đi chơi chung");
+  console.log(filteredArr);
+
+
+
 
   React.useEffect(() => {
-    dispatch(filterProvider(service))
-  },[service])
-
-
-  const showProvider = useSelector((state) => {
-    return state.provider.currenProvider
-  });
+    dispatch(filterProvider({ service: service, listProvider: showProvider }));
+  }, [service]);
 
   React.useEffect(() => {
     dispatch(getProvider());
   }, []);
-
-  const checkboxValue = useSelector((state) => {
-
-    console.log(state.provider)
-  });
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", width: "100%", gap: 1 }}>
@@ -50,9 +52,9 @@ export default function ShowAll({ service, setService }) {
               </CardContent>
             </CardActionArea>
 
-            <CardContent sx={{padding:"0 15px"}}>
+            <CardContent sx={{ padding: "0 15px" }}>
               <Typography variant="body2" color="text.secondary">
-                <ShowRating  rate={item.rate}/>
+                <ShowRating rate={item.rate} />
                 <Stack
                   direction="column"
                   justifyContent="center"

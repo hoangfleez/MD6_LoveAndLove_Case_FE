@@ -20,15 +20,15 @@ export default function Free({ setService }) {
       <h2>Dịch vụ miên phí</h2>
       <Box sx={{ display: "flex", flexDirection: "column", paddingLeft: "20px" }}>
         <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxChange} name="namTay" />}
-          label="Nắm tay"
+          control={<Checkbox onChange={handleCheckboxChange} name="namtay" />}
+          label="namtay"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxChange} name="noiYeu" />}
+          control={<Checkbox onChange={handleCheckboxChange} name="noiyeu" />}
           label="Nói yêu"
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxChange} name="nhinMat" />}
+          control={<Checkbox onChange={handleCheckboxChange} name="nhinmat" />}
           label="Nhìn mắt"
         />
       </Box>
