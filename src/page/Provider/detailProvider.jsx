@@ -1,7 +1,8 @@
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getProviderDetail} from "../../../services/providerService.js";
+import { getProviderDetail } from "../../services/providerService";
+
 
 const DetailProvider = () => {
     const { id } = useParams();
