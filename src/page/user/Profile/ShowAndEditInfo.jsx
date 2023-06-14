@@ -41,6 +41,7 @@ const ShowAndEditInfo = () => {
 
 
     const handleSubmitEditProfile = async (event) => {
+      alert("cap nhat thanh cong")
     event.preventDefault();
 
     const editProfile = {
@@ -133,7 +134,7 @@ const ShowAndEditInfo = () => {
                         label="Địa chỉ"
                         multiline
                         defaultValue={address}
-                        onChange={(event) => setLastname(event.target.value)}
+                        onChange={(event) => setAddress(event.target.value)}
                     />
                 </Box>
               <Box sx={{width:"45ch", marginTop:3, }}>

@@ -54,20 +54,20 @@ export default function Login(props) {
   });
   const [message, setMessage] = React.useState("");
 
-
   const onSubmit = (user) => {
-    dispatch(login(user)).then((data) => {
-      console.log(data);
-      if (data.payload === "User is not exist") {
-        setMessage("Tài khoản không tồn tại!!");
-      } else if (data.payload === "Password is wrong") {
-        setMessage("Mật khẩu sai hãy kiểm tra lại.");
-      } else {
-        alert("Đăng nhập thành công");
-        props.setOpen(false);
-        reset();
-      }
-    });
+    dispatch(login(user))
+      .then((data) => {
+        if(data.payload.data){
+          props.setOpen(false);
+          reset();
+        }else{
+        setMessage(data.payload.err)
+        }
+        
+      })
+      .catch((err) => {
+        console.log(err,8888777);
+      });
   };
 
   return (
