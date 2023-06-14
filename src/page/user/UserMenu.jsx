@@ -16,6 +16,7 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   const handleLogout = () => {
     localStorage.clear();
     dispatch(logout());
+    navigate("/");
     handleCloseUserMenu();
   };
 

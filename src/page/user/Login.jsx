@@ -57,6 +57,7 @@ export default function Login(props) {
 
   const onSubmit = (user) => {
     dispatch(login(user)).then((data) => {
+      console.log(data);
       if (data.payload === "User is not exist") {
         setMessage("Tài khoản không tồn tại!!");
       } else if (data.payload === "Password is wrong") {

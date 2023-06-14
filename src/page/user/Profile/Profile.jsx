@@ -18,12 +18,7 @@ const Profile = () => {
   const decodedToken = JSON.parse(atob(token.split(".")[1]));
   const userId = decodedToken.idUser;
 
-  const profile = useSelector((state) => {
-    if (state.user.profile?.data?.length > 0) {
-      return state.user.profile.data[0];
-    }
-    return null;
-  });
+  const profile = useSelector((state) => state.user.profile?.data?.[0]);
 
   useEffect(() => {
     if (!profile) {
@@ -33,76 +28,85 @@ const Profile = () => {
 
   return (
     <Container maxWidth="lg" sx={{ marginTop: "70px" }}>
-      {profile && (
+        {profile && (
         <Box sx={{ height: "100vh", display: "flex", width: "100%" }}>
-          <Box sx={{ width: "30%" }}>
-            {/* <p>
-              Ảnh:{" "}
-              <img style={{ width: 100, height: 100 }} src={profile.avatar} />
-            </p> */}
+            <Box sx={{ width: "30%" }}>
             <CardMedia
-              component="img"
-              sx={{ width: 250 }}
-              image={profile.avatar}
-              alt="Paella dish"
+                component="img"
+                sx={{ width: 250 }}
+                image={profile.avatar}
+                alt="Avatar"
             />
-          </Box>
+        </Box>
 
-          <Box sx={{ width: "70%" }}>
-            <h1>Thông tin tài khoản</h1>
+        <Box sx={{ width: "70%" }}>
+            <h1>Thông tin tài khoản</h1>
+
             <FormControl sx={{ width: "45ch" }}>
-              Địa chỉ email
-              <OutlinedInput placeholder="Địa chỉ email">
-                {profile.email}
-              </OutlinedInput>
+                <label>Địa chỉ email</label>
+                <OutlinedInput
+                value={profile.email}
+                readOnly
+                placeholder="Địa chỉ email"
+            />
             </FormControl>
 
             <FormControl sx={{ width: "45ch" }}>
-              Họ
-              <OutlinedInput placeholder="Họ">
-                {profile.firstname}
-              </OutlinedInput>
-            </FormControl>
-            <FormControl sx={{ width: "45ch" }}>
-              Tên
-              <OutlinedInput placeholder="Tên">
-                {profile.lastname}
-              </OutlinedInput>
+                <label>Họ</label>
+                <OutlinedInput
+                value={profile.firstname}
+                readOnly
+                placeholder="Họ"
+            />
             </FormControl>
 
             <FormControl sx={{ width: "45ch" }}>
-              Địa chỉ
-              <OutlinedInput placeholder="Địa chỉ">
-                {profile.address}
-              </OutlinedInput>
+                <label>Tên</label>
+                <OutlinedInput
+                value={profile.lastname}
+                readOnly
+                placeholder="Tên"
+            />
             </FormControl>
 
             <FormControl sx={{ width: "45ch" }}>
-              Số chứng minh thư
-              <OutlinedInput placeholder="Số chính minh thư">
-                {profile.identityCard}
-              </OutlinedInput>
+                <label>Địa chỉ</label>
+                <OutlinedInput
+                value={profile.address}
+                readOnly
+                placeholder="Địa chỉ"
+            />
             </FormControl>
 
             <FormControl sx={{ width: "45ch" }}>
-              Số điện thoọi
-              <OutlinedInput placeholder="Số điện thọai">
-                {profile.phoneNumber}
-              </OutlinedInput>
+                <label>Số chứng minh thư</label>
+                <OutlinedInput
+                value={profile.identityCard}
+                readOnly
+                placeholder="Số chứng minh thư"
+            />
+            </FormControl>
+
+            <FormControl sx={{ width: "45ch" }}>
+                <label>Số điện thoại</label>
+                <OutlinedInput
+                value={profile.phoneNumber}
+                readOnly
+                placeholder="Số điện thoại"
+            />
             </FormControl>
 
             <Link to={`/edit-profile`}>
-              <Button variant="contained">Cập nhật</Button>
+            <Button variant="contained">Cập nhật</Button>
             </Link>
             <Link to={`/add-provider`}>
-              <Button variant="contained">Trở thành nhà cung cấp</Button>
+                <Button variant="contained">Trở thành nhà cung cấp</Button>
             </Link>
-          </Box>
-
         </Box>
-      )}
+        </Box>
+    )}
     </Container>
-  );
+);
 };
 
 export default Profile;

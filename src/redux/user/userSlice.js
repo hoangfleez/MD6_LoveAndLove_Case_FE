@@ -15,7 +15,7 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload, 2222);
+      console.log(action.data, 2222);
       if (typeof action.payload === "string") {
         state.currentUser = undefined;
       } else {
