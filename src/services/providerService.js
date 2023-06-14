@@ -26,6 +26,19 @@ export const addProvider = createAsyncThunk(
   }
 );
 
+export const getProviderDetail = createAsyncThunk(
+    "provider/getProviderDetail",
+    async (id) => {
+        try {
+            const res = await customAPI().get(`providers/providerDetail/${id}`);
+            return res.data;
+        } catch (err) {
+            return err.response.data.payload;
+        }
+    }
+);
+
+
 export const filterProvider = createAsyncThunk(
   "provider/filterProvider",
   async (arrbox) => {

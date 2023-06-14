@@ -5,6 +5,7 @@ import Body from "./page/home/body/Body";
 import Profile from "./page/user/Profile/Profile.jsx";
 import EditProfile from "./page/user/Profile/EditProfile.jsx";
 import AddProvider from "./page/user/Provider/AddProvider.jsx";
+import DetailProvider from "./page/user/Provider/detailProvider.jsx";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                     <Route path="profile" element={<Profile/>}/>
                     <Route path="edit-profile" element={<EditProfile/>}/>
                     <Route path="add-provider" element={<AddProvider/>}/>
+                    <Route path="detail-provider/:id" element={<DetailProvider/>}/>
                 </Route>
             </Routes>
         </>
