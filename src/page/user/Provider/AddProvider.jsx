@@ -1,27 +1,27 @@
-import {useState} from "react";
-import {useDispatch} from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addProvider } from "../../../services/providerService.js";
 
 const AddProvider = () => {
-    const [name, setName] = useState({dob,sex,city,country,avatar,height});
-    const [dob, setDob] = useState("");
-    const [sex, setSex] = useState("");
-    const [city, setCity] = useState("");
-    const [country, setCountry] = useState("");
-    const [avatar, setAvatar] = useState("");
-    const [height, setHeight] = useState("");
-    const [weight, setWeight] = useState("");
-    const [hobby, setHobby] = useState("");
-    const [desc, setDesc] = useState("");
-    const [request, setRequest] = useState("");
-    const [linkFB, setLinkFB] = useState("");
-    const [joinDate, setJoinDate] = useState("");
-    const [price, setPrice] = useState("");
-    const [ready, setReady] = useState("");
-    const [images, setImages] = useState("");
-    const [service, setService] = useState("");
-    const [user, setUser] = useState("");
-    const [status, setStatus] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        dob: "",
+        sex: "",
+        city: "",
+        country: "",
+        avatar: "",
+        height: "",
+        weight: "",
+        hobby: "",
+        desc: "",
+        request: "",
+        linkFB: "",
+        price: "",
+        ready: "",
+        service: "",
+        user: "",
+        status: "",
+    });
 
     const dispatch = useDispatch();
 
@@ -33,29 +33,20 @@ const AddProvider = () => {
         event.preventDefault();
 
         const newProvider = {
-            name: name,
-            dob: dob,
-            sex: sex,
-            city: city,
-            country: country,
-            avatar: avatar,
-            height: height,
-            weight: weight,
-            hobby: hobby,
-            desc: desc,
-            request: request,
-            linkFB: linkFB,
-            joinDate: joinDate,
-            price: price,
-            ready: ready,
-            images: images,
-            service: service,
+            ...formData,
             user: userId,
-            status: status,
         };
+
         let res = await dispatch(addProvider(newProvider));
     };
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     return (
         <>
@@ -65,135 +56,149 @@ const AddProvider = () => {
                 <form>
                     <div>
                         <label>Tên: </label>
-                        <input value={name}
-                               onChange={(event) => setName(event.target.value)}
+                        <input
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Ngày sinh nhật: </label>
-                        <input value={dob}
-                               onChange={(event) => setDob(event.target.value)}
+                        <input
+                            name="dob"
+                            value={formData.dob}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Giới tính: </label>
-                        <input value={sex}
-                               onChange={(event) => setSex(event.target.value)}
+                        <input
+                            name="sex"
+                            value={formData.sex}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Thành phố: </label>
-                        <input value={city}
-                               onChange={(event) => setCity(event.target.value)}
+                        <input
+                            name="city"
+                            value={formData.city}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Quốc tịch: </label>
-                        <input value={country}
-                               onChange={(event) => setCountry(event.target.value)}
+                        <input
+                            name="country"
+                            value={formData.country}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Chiều cao: </label>
-                        <input value={height}
-                               onChange={(event) => setHeight(event.target.value)}
+                        <input
+                            name="height"
+                            value={formData.height}
+                            onChange={handleInputChange}
                         />
                     </div>
 
 
                     <div>
                         <label>Cân nặng: </label>
-                        <input value={weight}
-                               onChange={(event) => setWeight(event.target.value)}
+                        <input
+                            name="weight"
+                            value={formData.weight}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Sở thích: </label>
-                        <input value={hobby}
-                               onChange={(event) => setHobby(event.target.value)}
+                        <input
+                            name="hobby"
+                            value={formData.hobby}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Ảnh: </label>
-                        <input value={avatar}
-                               onChange={(event) => setAvatar(event.target.value)}
+                        <input
+                            name="avatar"
+                            value={formData.avatar}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Yêu cầu: </label>
-                        <input value={request}
-                               onChange={(event) => setRequest(event.target.value)}
+                        <input
+                            name="request"
+                            value={formData.request}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>linkFB: </label>
-                        <input value={linkFB}
-                               onChange={(event) => setLinkFB(event.target.value)}
+                        <input
+                            name="linkFB"
+                            value={formData.linkFB}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Mô tả bản thân: </label>
-                        <input value={desc}
-                               onChange={(event) => setDesc(event.target.value)}
+                        <input
+                            name="desc"
+                            value={formData.desc}
+                            onChange={handleInputChange}
                         />
                     </div>
 
-                    <div>
-                        <label>Ngày tháng: </label>
-                        <input value={joinDate}
-                               onChange={(event) => setJoinDate(event.target.value)}
-                        />
-                    </div>
 
                     <div>
                         <label>Giá: </label>
-                        <input value={price}
-                               onChange={(event) => setPrice(event.target.value)}
+                        <input
+                            name="price"
+                            value={formData.price}
+                            onChange={handleInputChange}
                         />
                     </div>
 
                     <div>
                         <label>Trạng thái: </label>
-                        <input value={ready}
-                               onChange={(event) => setReady(event.target.value)}
+                        <input
+                            name="ready"
+                            value={formData.ready}
+                            onChange={handleInputChange}
                         />
                     </div>
 
-                    <div>
-                        <label>images: </label>
-                        <input value={images}
-                               onChange={(event) => setImages(event.target.value)}
-                        />
-                    </div>
 
                     <div>
                         <label>service: </label>
-                        <input value={service}
-                               onChange={(event) => setService(event.target.value)}
+                        <input
+                            name="service"
+                            value={formData.service}
+                            onChange={handleInputChange}
                         />
                     </div>
 
-                    <div>
-                        <label>user: </label>
-                        <input value={user}
-                               onChange={(event) => setUser(event.target.value)}
-                        />
-                    </div>
 
                     <div>
                         <label>status: </label>
-                        <input value={status}
-                               onChange={(event) => setStatus(event.target.value)}
+                        <input
+                            name="status"
+                            value={formData.status}
+                            onChange={handleInputChange}
                         />
                     </div>
 
@@ -203,9 +208,7 @@ const AddProvider = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default AddProvider;
-
-

@@ -1,10 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import customAPI from "./customAPI.js";
 
 
 export const addProvider = createAsyncThunk("provider/addProvider", async (provider) => {
     try{
-        const res = await axios.post(" http://127.0.0.1:8181/providers", provider);
+        const res = await customAPI().post("providers", provider);
+        return res.data;
+    }catch(err){
+        return err.response.data.payload;
+    }
+
+});
+
+export const showProvider = createAsyncThunk("provider/showProvider", async () => {
+    try{
+        const res = await axios.get("http://127.0.0.1:8181/providers");
         return res.data;
     }catch(err){
         return err.response.data.payload;

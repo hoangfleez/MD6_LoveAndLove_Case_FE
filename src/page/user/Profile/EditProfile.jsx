@@ -1,49 +1,34 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, showUser } from "../../../services/useService.js";
 
 const EditProfile = () => {
-
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [address, setAddress] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [identityCard, setIdentityCard] = useState("");
-    const [avatar, setAvatar] = useState("");
-
+    const [formData, setFormData] = useState({});
     const dispatch = useDispatch();
-
     const token = localStorage.getItem("token");
     const decodedToken = JSON.parse(atob(token.split(".")[1]));
     const userId = decodedToken.id;
 
     const profile = useSelector((state) => {
-        console.log(state)
+        console.log(state);
         if (state.user.profile?.data?.length > 0) {
             return state.user.profile.data[0];
         }
         return null;
     });
 
-    const handleSubmitEditProfile = async(event) => {
+    const handleSubmitEditProfile = async (event) => {
         event.preventDefault();
         const editProfile = {
-            id : userId,
-            username : username,
-            password : password,
-            firstname : firstname,
-            lastname : lastname,
-            address : address,
-            phoneNumber : phoneNumber,
-            email: email,
-            identityCard : identityCard,
-            avatar : avatar,
+            id: userId,
+            ...formData,
         };
-
         let res = await dispatch(editUser(editProfile));
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
     };
 
     useEffect(() => {
@@ -52,21 +37,19 @@ const EditProfile = () => {
 
     useEffect(() => {
         if (profile) {
-            setUsername(profile.username);
-            setPassword(profile.password);
-            setFirstname(profile.firstname);
-            setLastname(profile.lastname);
-            setAddress(profile.address);
-            setPhoneNumber(profile.phoneNumber);
-            setEmail(profile.email)
-            setIdentityCard(profile.identityCard);
-            setAvatar(profile.avatar);
+            setFormData({
+                username: profile.username,
+                password: profile.password,
+                firstname: profile.firstname,
+                lastname: profile.lastname,
+                address: profile.address,
+                phoneNumber: profile.phoneNumber,
+                email: profile.email,
+                identityCard: profile.identityCard,
+                avatar: profile.avatar,
+            });
         }
     }, [profile]);
-
-
-
-
 
     return (
         <>
@@ -76,65 +59,82 @@ const EditProfile = () => {
                 <form>
                     <div>
                         <label>Tên tài khoản: </label>
-                        <input value={username}
-                         onChange={(event) => setUsername(event.target.value)}
+                        <input
+                            name="username"
+                            value={formData.username || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Mật khẩu: </label>
-                        <input value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+                        <input
+                            name="password"
+                            value={formData.password || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Tên: </label>
-                        <input value={firstname}
-                        onChange={(event) => setFirstname(event.target.value)}
+                        <input
+                            name="firstname"
+                            value={formData.firstname || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Họ: </label>
-                        <input value={lastname}
-                        onChange={(event) => setLastname(event.target.value)}
+                        <input
+                            name="lastname"
+                            value={formData.lastname || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Địa chỉ: </label>
-                        <input value={address}
-                        onChange={(event) => setAddress(event.target.value)}
+                        <input
+                            name="address"
+                            value={formData.address || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Số điện thoại: </label>
-                        <input value={phoneNumber}
-                        onChange={(event) => setPhoneNumber(event.target.value)}
+                        <input
+                            name="phoneNumber"
+                            value={formData.phoneNumber || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
-
                     <div>
                         <label>Email: </label>
-                        <input value={email}
-                               onChange={(event) => setEmail(event.target.value)}
+                        <input
+                            name="email"
+                            value={formData.email || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Số CCCD: </label>
-                        <input value={identityCard}
-                        onChange={(event) => setIdentityCard(event.target.value)}
+                        <input
+                            name="identityCard"
+                            value={formData.identityCard || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
                     <div>
                         <label>Ảnh: </label>
-                        <input value={avatar}
-                        onChange={(event) => setAvatar(event.target.value)}
+                        <input
+                            name="avatar"
+                            value={formData.avatar || ""}
+                            onChange={handleChange}
                         />
                     </div>
 
