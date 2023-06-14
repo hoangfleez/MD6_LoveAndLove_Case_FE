@@ -15,19 +15,16 @@ export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();
 
   const showProvider = useSelector((state) => {
+    console.log(state.provider);
     return state.provider.currenProvider;
   });
 
-
-  const filteredArr = showProvider.filter((item) => item.service === "Đi chơi chung");
-  console.log(filteredArr);
-
-
-
+  // const filteredArr = showProvider.filter((item) => item.service === "Đi chơi chung");
+  // console.log(filteredArr);
 
   React.useEffect(() => {
     dispatch(filterProvider({ service: service, listProvider: showProvider }));
-  }, [service]);
+  }, []);
 
   React.useEffect(() => {
     dispatch(getProvider());

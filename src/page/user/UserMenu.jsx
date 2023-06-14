@@ -1,24 +1,13 @@
-import { Logout, Settings } from '@mui/icons-material';
-import { ListItemIcon, Menu, MenuItem } from '@mui/material';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../services/useService';
-import {useNavigate} from "react-router-dom";
-
-const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  // const user = useSelector(({ user }) => {
-  //   return user.currentUser;
-  // });
-=========
-import {useNavigate} from "react-router-dom";
-// import { updateUser } from '../../redux/authSlice';
+import { Logout, Settings } from "@mui/icons-material";
+import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/useService";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
->>>>>>>>> Temporary merge branch 2
+  const navigate = useNavigate;
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
@@ -31,9 +20,8 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   };
 
   const handleProfile = () => {
-    navigate("profile")
-  }
-
+    navigate("profile");
+  };
 
   return (
     <Menu
