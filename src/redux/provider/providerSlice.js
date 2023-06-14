@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { filterProvider, getProvider } from "../../sevives/providerService";
-import { addProvider } from "../../services/providerService";
+import { addProvider, filterProvider, getProvider } from "../../services/providerService";
+// import { filterProvider, getProvider } from "../../sevives/providerService";
+// import { addProvider, filterProvider, getProvider } from "../../services/providerService"
 
 const initialState = {
   listProvider: [],

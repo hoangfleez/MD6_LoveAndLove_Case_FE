@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterProvider,
   getProvider,
-} from "../../../../sevives/providerService";
+} from "../../../../services/providerService";
 
 export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();

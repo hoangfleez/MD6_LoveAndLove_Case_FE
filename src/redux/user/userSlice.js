@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editUser, login, logout, showUser } from "../../sevives/useService";
+import { editUser, login, logout, showUser } from "../../services/useService";
+
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem("token")),

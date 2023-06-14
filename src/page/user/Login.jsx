@@ -12,7 +12,7 @@ import TextFields from "../../components/TextFields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-import { login } from "../../sevives/useService";
+import { login } from "../../services/useService";
 
 function Copyright(props) {
   return (

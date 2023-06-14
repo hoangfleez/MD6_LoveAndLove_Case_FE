@@ -12,7 +12,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import TextFields from "../../components/TextFields";
-import { register } from "../../sevives/useService";
+import { register } from "../../services/useService";
 import { email } from "../../utils";
 import { Padding } from "@mui/icons-material";
 import Email from "../../components/Email";
