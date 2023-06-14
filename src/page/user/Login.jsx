@@ -66,7 +66,7 @@ export default function Login(props) {
         
       })
       .catch((err) => {
-        console.log(err,8888777);
+        console.log(err);
       });
   };
 
