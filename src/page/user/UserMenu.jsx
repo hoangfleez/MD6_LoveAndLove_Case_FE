@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);

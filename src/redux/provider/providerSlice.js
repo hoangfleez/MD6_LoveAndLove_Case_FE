@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { filterProvider, getProvider } from "../../sevives/providerService";
+import { addProvider } from "../../services/providerService";
 
 const initialState = {
   listProvider: [],
@@ -26,10 +27,11 @@ const providerSlice = createSlice({
       // return arr;
     });
 
-    // builder.addCase(addProvider.fulfilled, (state, action) => {
-    //   state.lease = action.payload;
-    // });
+    builder.addCase(addProvider.fulfilled, (state, action) => {
+      state.lease = action.payload;
+    });
   },
+  
 });
 
 export default providerSlice.reducer;

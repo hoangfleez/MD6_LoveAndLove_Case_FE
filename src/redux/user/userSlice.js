@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { editUser, login, logout, showUser } from "../../sevives/useService";
 
 const initialState = {
-  currentUser: JSON.parse(localStorage.getItem("user")),
+  currentUser: JSON.parse(localStorage.getItem("token")),
   profile: {},
 
 };
@@ -17,7 +17,7 @@ const userSlice = createSlice({
         state.currentUser = undefined;
       } else {
         state.currentUser = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload.payload));
+        localStorage.setItem("token", JSON.stringify(action.payload.payload));
       }
     });
 
