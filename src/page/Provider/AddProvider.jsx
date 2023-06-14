@@ -19,7 +19,6 @@ const AddProvider = () => {
     linkFB: "",
     price: "",
     ready: "",
-    service: "",
     user: "",
     status: "",
   });
@@ -178,15 +177,6 @@ const AddProvider = () => {
             <input
               name="ready"
               value={formData.ready}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label>service: </label>
-            <input
-              name="service"
-              value={formData.service}
               onChange={handleInputChange}
             />
           </div>
