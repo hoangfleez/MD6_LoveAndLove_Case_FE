@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProvider } from "../../../services/providerService.js";
+import { addProvider } from "../../services/providerService";
+
 
 const AddProvider = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +28,11 @@ const AddProvider = () => {
 
   const token = localStorage.getItem("token");
   const decodedToken = JSON.parse(atob(token.split(".")[1]));
-  const userId = decodedToken.id;
+  const userId = decodedToken.idUser;
 
   const handleSubmitAddProvider = async (event) => {
     event.preventDefault();
+    console.log(1)
 
     const newProvider = {
       ...formData,

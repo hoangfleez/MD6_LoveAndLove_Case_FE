@@ -4,7 +4,8 @@ import Home from "./page/home/Home";
 import Body from "./page/home/body/Body";
 import Profile from "./page/user/Profile/Profile.jsx";
 import EditProfile from "./page/user/Profile/EditProfile.jsx";
-import AddProvider from "./page/user/Provider/AddProvider.jsx";
+import AddProvider from "./page/Provider/AddProvider";
+
 
 
 function App() {

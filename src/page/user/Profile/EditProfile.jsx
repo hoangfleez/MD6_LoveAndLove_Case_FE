@@ -18,10 +18,9 @@ const EditProfile = () => {
 
     const token = localStorage.getItem("token");
     const decodedToken = JSON.parse(atob(token.split(".")[1]));
-    const userId = decodedToken.id;
+    const userId = decodedToken.idUser;
 
     const profile = useSelector((state) => {
-        console.log(state)
         if (state.user.profile?.data?.length > 0) {
             return state.user.profile.data[0];
         }

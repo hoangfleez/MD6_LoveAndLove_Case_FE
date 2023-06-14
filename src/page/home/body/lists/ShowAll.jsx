@@ -15,7 +15,7 @@ export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();
 
   const showProvider = useSelector((state) => {
-    console.log(state.provider);
+    console.log(state);
     return state.provider.currenProvider;
   });
 
