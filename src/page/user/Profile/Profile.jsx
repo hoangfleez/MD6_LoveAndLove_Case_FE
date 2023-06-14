@@ -14,6 +14,8 @@ const Profile = () => {
 
 
     const profile = useSelector((state) => {
+
+        console.log(state.user.profile,444)
         if (state.user.profile?.data?.length > 0) {
             return state.user.profile.data[0];
         }

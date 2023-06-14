@@ -15,7 +15,6 @@ const providerSlice = createSlice({
             state.lease = action.payload;
         });
 
-
         builder.addCase(showProvider.fulfilled, (state, action)=>{
             state.lease = action.payload;
         });
