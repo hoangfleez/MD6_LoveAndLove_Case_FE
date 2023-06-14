@@ -1,16 +1,13 @@
-import { Logout, Settings } from '@mui/icons-material';
-import { ListItemIcon, Menu, MenuItem } from '@mui/material';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../services/useService';
-import {useNavigate} from "react-router-dom";
+import { Logout, Settings } from "@mui/icons-material";
+import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/useService";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const user = useSelector(({ user }) => {
-  //   return user.currentUser;
-  // });
+  const navigate = useNavigate();
 
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
@@ -20,13 +17,11 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
     localStorage.clear();
     dispatch(logout());
     handleCloseUserMenu();
-    window.location.reload(); // Reloads the current page
   };
 
   const handleProfile = () => {
-    navigate("profile")
-  }
-
+    navigate("profile");
+  };
 
   return (
     <Menu

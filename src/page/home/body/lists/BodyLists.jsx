@@ -4,6 +4,10 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Button, Container, Typography } from "@mui/material";
 import ShowAll from "./ShowAll";
+import { useDispatch } from "react-redux";
+
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +50,7 @@ const CustomTab = ({ label, ...props }) => {
         margin: "10px",
         padding: "0 15px",
         minHeight: "35px",
-        textTransform: 'none',
+        textTransform: "none",
         "&.Mui-selected": {
           backgroundColor: "customSelected.backgroundColor",
           color: "customSelected.color",
@@ -58,12 +62,30 @@ const CustomTab = ({ label, ...props }) => {
   );
 };
 
-export default function BodyLists() {
+const arr = [
+  { id: "1", name: "Tất cả" },
+  { id: "2", name: "Ra mắt người nhà" },
+  { id: "3", name: "Ra mắt bạn bè" },
+  { id: "4", name: "Du lịch chung cùng nhóm bạn" },
+  { id: "5", name: "Đi chơi chung" },
+  { id: "6", name: "Tham dự sinh nhật" },
+  { id: "7", name: "Trò chuyện offline" },
+  { id: "8", name: "Trò chuyện online" },
+  { id: "9", name: "Đi chơi tết" },
+  { id: "10", name: "Đi chơi ngày lễ" },
+];
+
+export default function BodyLists({ service, setService }) {
+  const dispatch = useDispatch();
+
   const [value, setValue] = React.useState(0);
+  const [showService, setShowService] = React.useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  console.log(setShowService, 78787);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -79,24 +101,17 @@ export default function BodyLists() {
             "& .MuiTabs-indicator": { display: "none" },
           }}
         >
-          <CustomTab label="Tất cả" />
-          <CustomTab label="Ra mắt người nhà" />
-          <CustomTab label="Ra mắt bạn bè" />
-          <CustomTab label="Du lịch chung cùng nhóm bạn" />
-          <CustomTab label="Đi chơi chung" />
-          <CustomTab label="Tham dự sinh nhật" />
-          <CustomTab label="Trò chuyện offline" />
-          <CustomTab label="Trò chuyện online" />
-          <CustomTab label="Đi chơi tết" />
-          <CustomTab label="Đi chơi ngày lễ" />
+          {arr.map((item) => (
+            <CustomTab key={item.id} label={item.name} />
+          ))}
         </Tabs>
       </Box>
       <Box sx={{ marginTop: "48px" }}>
         <TabPanel value={value} index={0}>
-          <ShowAll />
+          <ShowAll service={service} setService={setService} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Ra mat nguoi nha
+          <ShowAll service={service} setService={setService} />
         </TabPanel>
         <TabPanel value={value} index={2}>
           Ra mat ban be
