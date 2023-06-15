@@ -26,6 +26,7 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
     });
 
+
     builder.addCase(showUser.fulfilled, (state, action) => {
       state.profile = action.payload;
     });

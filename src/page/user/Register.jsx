@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import TextFields from "../../components/TextFields";
 import { register } from "../../services/useService";
-import { email } from "../../utils";
+// import { email } from "../../utils";
 import { Padding } from "@mui/icons-material";
 import Email from "../../components/Email";
 
@@ -44,10 +44,10 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-  email: yup
-    .string()
-    .required("Không được để trống!")
-    .matches(email, "Sai định dạng email"),
+  // email: yup
+  //   .string()
+  //   .required("Không được để trống!")
+  //   .matches(email, "Sai định dạng email"),
 });
 
 export default function Register(props) {
@@ -67,8 +67,7 @@ export default function Register(props) {
   } = useForm({
     defaultValues: {
       username: "",
-      password: "",
-      email: "",
+      // email: "",
     },
     resolver: yupResolver(schema),
   });
@@ -80,13 +79,13 @@ export default function Register(props) {
   const [message, setMessage] = React.useState("");
 
   const onSubmit = (user) => {
-    console.log(user);
     dispatch(register(user)).then((data) => {
       if (data.payload === "tai khoan da ton tai") {
         setMessage("Tài khooản đã tồn tại!! Hãy chọn tài khooản khác.");
       } else {
-        // handleChangeLogin();
-        // reset()
+        setMessage("");
+        handleChangeLogin();
+        reset()
       }
     });
   };
