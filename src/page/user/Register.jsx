@@ -44,10 +44,6 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
-  email: yup
-    .string()
-    .required("Không được để trống!")
-    .matches(email, "Sai định dạng email"),
 });
 
 export default function Register(props) {
@@ -68,7 +64,6 @@ export default function Register(props) {
     defaultValues: {
       username: "",
       password: "",
-      email: "",
     },
     resolver: yupResolver(schema),
   });
@@ -80,10 +75,11 @@ export default function Register(props) {
   const [message, setMessage] = React.useState("");
 
   const onSubmit = (user) => {
-    console.log(user);
+    console.log(212121)
     dispatch(register(user)).then((data) => {
+      console.log(user);
       if (data.payload === "tai khoan da ton tai") {
-        setMessage("Tài khooản đã tồn tại!! Hãy chọn tài khooản khác.");
+        setMessage("Tài khoản đã tồn tại!! Hãy chọn tài khooản khác.");
       } else {
         // handleChangeLogin();
         // reset()
@@ -108,9 +104,9 @@ export default function Register(props) {
         </Typography>
         <Box
           component="form"
-          noValidate
+          // noValidate
           onSubmit={handleSubmit(onSubmit)}
-          sx={{ mt: 3 }}
+        sx={{ mt: 3 }}  
         >
           <TextFields
             errors={errors}

@@ -26,6 +26,7 @@ export const login = createAsyncThunk("users/login", async (user) => {
 export const register = createAsyncThunk("users/register", async (user) => {
   try {
     const res = await axios.post("http://127.0.0.1:8181/users/register", user);
+    console.log(res);
     return res.data;
   } catch (err) {
     return err.response.data.payload;

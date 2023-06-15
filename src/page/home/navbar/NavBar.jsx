@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from "react-redux";
 import UserIcons from "../../user/UserIcons";
 import PersonIcon from "@mui/icons-material/Person";
 import BasicModal from "../../user/Modal";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,6 +56,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function NavBar() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const goHome =()=>{
+    navigate("/")
+  }
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -108,10 +114,10 @@ export default function NavBar() {
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          // aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -139,7 +145,8 @@ export default function NavBar() {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 , backgroundColor:"customColorSchemes.backgroundColor"}}
       >
         <Toolbar>
-          <FavoriteIcon sx={{ mr: 2, color: "red" }} />
+
+          <FavoriteIcon sx={{ mr: 2, color: "red", cursor:"pointer" }}  onClick={goHome}/>
           <Typography
             variant="h6"
             noWrap
@@ -148,6 +155,7 @@ export default function NavBar() {
           >
             Love&Love
           </Typography>
+
           <Box sx={{ flexGrow: 1.3 }} />
           <Search sx={{ color:"customColorSchemes.textColor"}}>
             <StyledInputBase

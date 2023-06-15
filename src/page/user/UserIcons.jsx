@@ -6,46 +6,24 @@ import UserMenu from "./UserMenu";
 
 const UserIcons = () => {
 
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   const user = useSelector(({ user }) => {
+    console.log(user,8888);
     return user.currentUser;
   });
+
 
   const [anchorUserMenu, setAnchorUserMenu] = useState(null);
 
   return (
     <Box>
       <IconButton size="large" >
-        <Badge color="error" badgeContent={5}>
+        <Badge color="error" >
           <Mail />
         </Badge>
       </IconButton>
       <IconButton size="large" >
-        <Badge color="error" badgeContent={20}>
+        <Badge color="error" >
           <Notifications />
         </Badge>
       </IconButton>

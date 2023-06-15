@@ -7,15 +7,21 @@ import {Box, Button, CardActionArea, CardActions, Chip, Stack} from "@mui/materi
 import ShowRating from "../../Rating/ShowRating";
 import { useDispatch, useSelector } from "react-redux";
 import {filterProvider,getProvider} from "../../../../services/providerService";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function ShowAll({ service, setService }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const showProvider = useSelector((state) => {
     return state.provider.currenProvider;
   });
 
+
+
+  const showInforProvider = ()=>{
+    navigate(`/detail-provider/${item.id}`)
+  }
   // const filteredArr = showProvider.filter((item) => item.service === "Đi chơi chung");
   // console.log(filteredArr);
 
@@ -31,7 +37,7 @@ export default function ShowAll({ service, setService }) {
     <Box sx={{ display: "flex", flexWrap: "wrap", width: "100%", gap: 1 }}>
       {showProvider &&
         showProvider.map((item, key) => (
-          <Card sx={{ width: 250 }} key={key}>
+          <Card sx={{ width: 250 }} onClick={()=>{ navigate(`/detail-provider/${item.id}`)}} key={key}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -68,9 +74,6 @@ export default function ShowAll({ service, setService }) {
                 </Stack>
               </Typography>
             </CardContent>
-            <CardActions>
-              <Link to={`/detail-provider/${item.id}`} >View Detail</Link>
-            </CardActions>
           </Card>
         ))}
     </Box>

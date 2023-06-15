@@ -39,7 +39,6 @@ const ShowAndEditInfo = () => {
 
 
 
-
     const handleSubmitEditProfile = async (event) => {
       alert("cap nhat thanh cong")
     event.preventDefault();
@@ -96,7 +95,7 @@ const ShowAndEditInfo = () => {
                         sx={{ width: 250 }}
                         image={avatar}
                         alt="Avatar"
-                />
+                    />
                 </Box>
 
                 <Box sx={{ width: "70%"}}>
