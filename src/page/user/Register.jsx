@@ -16,6 +16,7 @@ import { register } from "../../services/useService";
 import { email } from "../../utils";
 import { Padding } from "@mui/icons-material";
 import Email from "../../components/Email";
+import InputMail from "./InputMail";
 
 function Copyright(props) {
   return (
@@ -44,6 +45,7 @@ const schema = yup.object({
     .string()
     .required("Không được để trống!")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
+  email: yup.string().required("Không được để trống!"),
 });
 
 export default function Register(props) {
@@ -64,6 +66,7 @@ export default function Register(props) {
     defaultValues: {
       username: "",
       password: "",
+      email: "",
     },
     resolver: yupResolver(schema),
   });
@@ -75,12 +78,13 @@ export default function Register(props) {
   const [message, setMessage] = React.useState("");
 
   const onSubmit = (user) => {
-    console.log(212121)
+    console.log(212121);
     dispatch(register(user)).then((data) => {
       console.log(user);
       if (data.payload === "tai khoan da ton tai") {
         setMessage("Tài khoản đã tồn tại!! Hãy chọn tài khooản khác.");
       } else {
+        alert("tao thanh cong");
         // handleChangeLogin();
         // reset()
       }
@@ -104,15 +108,15 @@ export default function Register(props) {
         </Typography>
         <Box
           component="form"
-          // noValidate
+          noValidate
           onSubmit={handleSubmit(onSubmit)}
-        sx={{ mt: 3 }}  
+          sx={{ mt: 1 }}
         >
           <TextFields
             errors={errors}
             control={control}
             name="username"
-            label="Tên đăng nhập"
+            placeholder="Tên đăng nhập"
           />
           {message ? (
             <>
@@ -127,10 +131,15 @@ export default function Register(props) {
             errors={errors}
             control={control}
             name="password"
-            label="Mật khẩu"
+            placeholder="Mật khẩu"
             type="password"
           />
-
+          <InputMail
+            errors={errors}
+            control={control}
+            name="email"
+            placeholder="Địa chỉ email"
+          />
           <Button
             fullWidth
             type="submit"
